@@ -1,0 +1,397 @@
+{
+    "tverskaya_oblast": {
+        "name": "Тверская область",
+        "population": 1226038,
+        "federal_district": "default"
+    },
+    "respublika_khakasiya": {
+        "name": "Республика Хакасия",
+        "population": 532998,
+        "federal_district": "default"
+    },
+    "pskovskaya_oblast": {
+        "name": "Псковская область",
+        "population": 596899,
+        "federal_district": "default"
+    },
+    "murmanskaya_oblast": {
+        "name": "Мурманская область",
+        "population": 665240,
+        "federal_district": "default"
+    },
+    "kurskaya_oblast": {
+        "name": "Курская область",
+        "population": 1078156,
+        "federal_district": "default"
+    },
+    "novgorodskaya_oblast": {
+        "name": "Новгородская область",
+        "population": 581578,
+        "federal_district": "default"
+    },
+    "khabarovskiy_kray": {
+        "name": "Хабаровский край",
+        "population": 1292764,
+        "federal_district": "default"
+    },
+    "penzenskaya_oblast": {
+        "name": "Пензенская область",
+        "population": 1261103,
+        "federal_district": "default"
+    },
+    "kemerovskaya_oblast_(kuzbass)": {
+        "name": "Кемеровская область (Кузбасс)",
+        "population": 2592013,
+        "federal_district": "default"
+    },
+    "krasnodarskiy_kray": {
+        "name": "Краснодарский край",
+        "population": 2856326,
+        "federal_district": "default"
+    },
+    "nizhegorodskaya_oblast": {
+        "name": "Нижегородская область",
+        "population": 3108918,
+        "federal_district": "default"
+    },
+    "novosibirskaya_oblast": {
+        "name": "Новосибирская область",
+        "population": 2797492,
+        "federal_district": "default"
+    },
+    "ulyanovskaya_oblast": {
+        "name": "Ульяновская область",
+        "population": 1191661,
+        "federal_district": "default"
+    },
+    "amurskaya_oblast": {
+        "name": "Амурская область",
+        "population": 763570,
+        "federal_district": "default"
+    },
+    "voronezhskaya_oblast": {
+        "name": "Воронежская область",
+        "population": 2302617,
+        "federal_district": "default"
+    },
+    "tomskaya_oblast": {
+        "name": "Томская область",
+        "population": 1062726,
+        "federal_district": "default"
+    },
+    "tambovskaya_oblast": {
+        "name": "Тамбовская область",
+        "population": 979171,
+        "federal_district": "default"
+    },
+    "lipetskaya_oblast": {
+        "name": "Липецкая область",
+        "population": 1138140,
+        "federal_district": "default"
+    },
+    "primorskiy_kray": {
+        "name": "Приморский край",
+        "population": 1841961,
+        "federal_district": "default"
+    },
+    "vladimirskaya_oblast": {
+        "name": "Владимирская область",
+        "population": 1342235,
+        "federal_district": "default"
+    },
+    "orenburgskaya_oblast": {
+        "name": "Оренбургская область",
+        "population": 1855781,
+        "federal_district": "default"
+    },
+    "tyumenskaya_oblast": {
+        "name": "Тюменская область",
+        "population": 3827679,
+        "federal_district": "default"
+    },
+    "respublika_bashkortostan": {
+        "name": "Республика Башкортостан",
+        "population": 4091621,
+        "federal_district": "default"
+    },
+    "volgogradskaya_oblast": {
+        "name": "Волгоградская область",
+        "population": 2492808,
+        "federal_district": "default"
+    },
+    "chechenskaya_respublika": {
+        "name": "Чеченская Республика",
+        "population": 1514603,
+        "federal_district": "default"
+    },
+    "respublika_kareliya": {
+        "name": "Республика Карелия",
+        "population": 532384,
+        "federal_district": "default"
+    },
+    "sverdlovskaya_oblast": {
+        "name": "Свердловская область",
+        "population": 4263691,
+        "federal_district": "default"
+    },
+    "moskva_i_oblast": {
+        "name": "Москва и область",
+        "population": 21557383,
+        "federal_district": "default"
+    },
+    "yaroslavskaya_oblast": {
+        "name": "Ярославская область",
+        "population": 1205637,
+        "federal_district": "default"
+    },
+    "samarskaya_oblast": {
+        "name": "Самарская область",
+        "population": 3164384,
+        "federal_district": "default"
+    },
+    "kamchatskiy_kray": {
+        "name": "Камчатский край",
+        "population": 292574,
+        "federal_district": "default"
+    },
+    "stavropolskiy_kray": {
+        "name": "Ставропольский край",
+        "population": 2902455,
+        "federal_district": "default"
+    },
+    "belgorodskaya_oblast": {
+        "name": "Белгородская область",
+        "population": 1536466,
+        "federal_district": "default"
+    },
+    "respublika_sakha_(yakutiya)": {
+        "name": "Республика Саха (Якутия)",
+        "population": 997833,
+        "federal_district": "default"
+    },
+    "kaliningradskaya_oblast": {
+        "name": "Калининградская область",
+        "population": 1030979,
+        "federal_district": "default"
+    },
+    "respublika_dagestan": {
+        "name": "Республика Дагестан",
+        "population": 3186902,
+        "federal_district": "default"
+    },
+    "respublika_buryatiya": {
+        "name": "Республика Бурятия",
+        "population": 977951,
+        "federal_district": "default"
+    },
+    "udmurtskaya_respublika": {
+        "name": "Удмуртская Республика",
+        "population": 1448946,
+        "federal_district": "default"
+    },
+    "sakhalinskaya_oblast": {
+        "name": "Сахалинская область",
+        "population": 466009,
+        "federal_district": "default"
+    },
+    "altayskiy_kray": {
+        "name": "Алтайский край",
+        "population": 210808,
+        "federal_district": "default"
+    },
+    "respublika_mordoviya": {
+        "name": "Республика Мордовия",
+        "population": 781440,
+        "federal_district": "default"
+    },
+    "astrakhanskaya_oblast": {
+        "name": "Астраханская область",
+        "population": 957772,
+        "federal_district": "default"
+    },
+    "zabaykalskiy_kray": {
+        "name": "Забайкальский край",
+        "population": 1000520,
+        "federal_district": "default"
+    },
+    "respublika_mariy_el": {
+        "name": "Республика Марий Эл",
+        "population": 676351,
+        "federal_district": "default"
+    },
+    "tulskaya_oblast": {
+        "name": "Тульская область",
+        "population": 1496690,
+        "federal_district": "default"
+    },
+    "respublika_tatarstan": {
+        "name": "Республика Татарстан",
+        "population": 4000084,
+        "federal_district": "default"
+    },
+    "karachayevo-cherkesiya": {
+        "name": "Карачаево-Черкесия",
+        "population": 496096,
+        "federal_district": "default"
+    },
+    "respublika_ingushetiya": {
+        "name": "Республика Ингушетия",
+        "population": 511316,
+        "federal_district": "default"
+    },
+    "ryazanskaya_oblast": {
+        "name": "Рязанская область",
+        "population": 1098579,
+        "federal_district": "default"
+    },
+    "respublika_tyva": {
+        "name": "Республика Тыва",
+        "population": 336251,
+        "federal_district": "default"
+    },
+    "krasnoyarskiy_kray": {
+        "name": "Красноярский край",
+        "population": 2856326,
+        "federal_district": "default"
+    },
+    "orlovskaya_oblast": {
+        "name": "Орловская область",
+        "population": 710023,
+        "federal_district": "default"
+    },
+    "vologodskaya_oblast": {
+        "name": "Вологодская область",
+        "population": 1138424,
+        "federal_district": "default"
+    },
+    "arkhangelskaya_oblast": {
+        "name": "Архангельская область",
+        "population": 1016030,
+        "federal_district": "default"
+    },
+    "bryanskaya_oblast": {
+        "name": "Брянская область",
+        "population": 1164635,
+        "federal_district": "default"
+    },
+    "khanty-mansiyskiy_ao_–_yugra": {
+        "name": "Ханты-Мансийский АО – Югра",
+        "population": 1713763,
+        "federal_district": "default"
+    },
+    "chelyabinskaya_oblast": {
+        "name": "Челябинская область",
+        "population": 3421556,
+        "federal_district": "default"
+    },
+    "saratovskaya_oblast": {
+        "name": "Саратовская область",
+        "population": 2431012,
+        "federal_district": "default"
+    },
+    "kabardino-balkarskaya_respublika": {
+        "name": "Кабардино-Балкарская Республика",
+        "population": 904338,
+        "federal_district": "default"
+    },
+    "kostromskaya_oblast": {
+        "name": "Костромская область",
+        "population": 577996,
+        "federal_district": "default"
+    },
+    "chuvashskaya_respublika": {
+        "name": "Чувашская Республика",
+        "population": 1183908,
+        "federal_district": "default"
+    },
+    "kurganskaya_oblast": {
+        "name": "Курганская область",
+        "population": 772332,
+        "federal_district": "default"
+    },
+    "smolenskaya_oblast": {
+        "name": "Смоленская область",
+        "population": 886900,
+        "federal_district": "default"
+    },
+    "kaluzhskaya_oblast": {
+        "name": "Калужская область",
+        "population": 1073252,
+        "federal_district": "default"
+    },
+    "rostovskaya_oblast": {
+        "name": "Ростовская область",
+        "population": 4192322,
+        "federal_district": "default"
+    },
+    "severnaya_osetiya_–_alaniya": {
+        "name": "Северная Осетия – Алания",
+        "population": 685393,
+        "federal_district": "default"
+    },
+    "respublika_komi": {
+        "name": "Республика Коми",
+        "population": 734363,
+        "federal_district": "default"
+    },
+    "sankt-peterburg_i_oblast": {
+        "name": "Санкт-Петербург и область",
+        "population": 7613938,
+        "federal_district": "default"
+    },
+    "yamalo-nenetskiy_ao": {
+        "name": "Ямало-Ненецкий АО",
+        "population": 511244,
+        "federal_district": "default"
+    },
+    "respublika_kalmykiya": {
+        "name": "Республика Калмыкия",
+        "population": 266432,
+        "federal_district": "default"
+    },
+    "omskaya_oblast": {
+        "name": "Омская область",
+        "population": 1851537,
+        "federal_district": "default"
+    },
+    "respublika_adygeya": {
+        "name": "Республика Адыгея",
+        "population": 498285,
+        "federal_district": "default"
+    },
+    "irkutskaya_oblast": {
+        "name": "Иркутская область",
+        "population": 2363447,
+        "federal_district": "default"
+    },
+    "ivanovskaya_oblast": {
+        "name": "Ивановская область",
+        "population": 924114,
+        "federal_district": "default"
+    },
+    "kirovskaya_oblast": {
+        "name": "Кировская область",
+        "population": 1149176,
+        "federal_district": "default"
+    },
+    "permskiy_kray": {
+        "name": "Пермский край",
+        "population": 2525149,
+        "federal_district": "default"
+    },
+    "chukotskiy_ao": {
+        "name": "Чукотский АО",
+        "population": 47906,
+        "federal_district": "default"
+    },
+    "magadanskaya_oblast": {
+        "name": "Магаданская область",
+        "population": 135907,
+        "federal_district": "default"
+    },
+    "yevreyskaya_ao": {
+        "name": "Еврейская АО",
+        "population": 149580,
+        "federal_district": "default"
+    }
+}
