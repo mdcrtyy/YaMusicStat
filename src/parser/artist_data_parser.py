@@ -5,7 +5,7 @@
 """
 import asyncio
 import aiohttp
-import re
+import time
 from bs4 import BeautifulSoup as bs
 
 
@@ -43,3 +43,12 @@ async def get_artists_data(url):
         print(f'Error: {e}')
         print(url)
     return info
+
+
+async def get_data_by_ids(ids):
+    tasks = []
+    for idd in ids:
+        tasks.append(asyncio.create_task(get_artists_data(f'https://music.yandex.ru/artist/{idd}/info')))
+        await asyncio.sleep(0.05)
+    results = await asyncio.gather(*tasks)
+    return results

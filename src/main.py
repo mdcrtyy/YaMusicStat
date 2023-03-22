@@ -2,27 +2,24 @@ import asyncio
 import time
 import json
 import datetime
+import nest_asyncio
 
 from src.parser.artist_data_parser import *
 from src.parser.genre_page_data_parser import *
+
+nest_asyncio.apply()
 
 
 async def main():
     start_time = time.time()
     date_today = datetime.datetime.now().strftime("%Y-%m-%d")
-    tasks = []
 
-    genre_list = ['инди', 'рок']
+    genre_list = ['поп']
 
     data = get_all_data_for_all_pages_and_genres(genre_list)
     ids = list(set(data.keys()))
 
-    # TODO: Вынести в отдельную функцию
-    for idd in ids:
-        tasks.append(asyncio.create_task(get_artists_data(f'https://music.yandex.ru/artist/{idd}/info')))
-        await asyncio.sleep(0.05)
-        time.sleep(0.01)
-    results = await asyncio.gather(*tasks)
+    results = await get_data_by_ids(ids)
 
     for idd, result in zip(ids, results):
         result['date'] = date_today
@@ -45,4 +42,5 @@ async def main():
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
