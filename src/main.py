@@ -14,9 +14,10 @@ async def main():
     start_time = time.time()
     date_today = datetime.datetime.now().strftime("%Y-%m-%d")
 
-    genre_list = ['поп']
+    genre_list = ['поп', 'рэп%20и%20хип-хоп', 'танцевальная%20музыка', 'электроника']
+    genre_list_2 = ['альтернатива', 'инди', 'рок-музыка', 'метал']
 
-    data = get_all_data_for_all_pages_and_genres(genre_list)
+    data = get_all_data_for_all_pages_and_genres(genre_list_2)
     ids = list(set(data.keys()))
 
     results = await get_data_by_ids(ids)
@@ -32,7 +33,7 @@ async def main():
 
     # TODO: Доделать наименования файлов в соответствии с собранными жанрами и количеством страниц
 
-    with open(f'../data/output/artists_{date_today}_{genre_list[0]}.json', 'w', encoding="utf-8") as f:
+    with open(f'../data/output/artists_{date_today}_{genre_list_2}.json', 'w', encoding="utf-8") as f:
         json.dump(final_data, f, ensure_ascii=False, indent=4)
 
     end_time = time.time()
