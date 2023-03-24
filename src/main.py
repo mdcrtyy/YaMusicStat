@@ -7,6 +7,7 @@ import nest_asyncio
 from src.parser.artist_data_parser import *
 from src.parser.genre_page_data_parser import *
 
+
 nest_asyncio.apply()
 
 

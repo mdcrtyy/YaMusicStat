@@ -6,15 +6,17 @@
 import asyncio
 import aiohttp
 from bs4 import BeautifulSoup as bs
+from src.helpers.get_actual_regions_names_list import get_regions_names
+
 
 # TODO: обработать все возможные ошибки, чтобы все работало автономно, починить Error: invalid literal for int() with
 #  base 10: 'Отключитьрекламу'
-semaphore = asyncio.Semaphore(25)
 
 
-async def get_artists_data(url, semaphore):
+async def get_artists_data(url, regions_names, semaphore=asyncio.Semaphore(25)):
     """
     Функция, заполняющая детальную информацию об артисте - количество слушателей, лайков и статистику по регионам.
+    :param regions_names: Список актуальных регионов, получаемых из модуля get_actual_regions_names_list
     :param url: URL-адрес страницы артиста на music.yandex.ru.
     :param semaphore: семафор для ограничения количества одновременных запросов.
     :return: словарь с информацией об артисте.
@@ -67,7 +69,8 @@ async def get_artists_data(url, semaphore):
                 raise Exception("Number of regions and counts do not match")
 
             for i in range(min(10, len(regions))):
-                reg_dict[regions[i].text] = int(count[i].text.replace(' ', ''))
+                if regions[i].text in regions_names:
+                    reg_dict[regions[i].text] = int(count[i].text.replace(' ', ''))
             info = {'Listeners': int(listeners_count), 'Likes': int(likes_count), 'Regions': reg_dict}
 
     except Exception as e:
@@ -86,8 +89,9 @@ async def get_data_by_ids(ids):
     :return: список словарей с информацией об артистах.
     """
     tasks = []
+    regions_names = get_regions_names()
     for idd in ids:
-        tasks.append(asyncio.create_task(get_artists_data(f'https://music.yandex.ru/artist/{idd}/info', semaphore)))
-        # await asyncio.sleep(0.05)
+        tasks.append(asyncio.create_task(get_artists_data(f'https://music.yandex.ru/artist/{idd}/info', regions_names,
+                                                          semaphore=asyncio.Semaphore(25))))
     results = await asyncio.gather(*tasks)
     return results
