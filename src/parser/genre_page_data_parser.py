@@ -5,14 +5,18 @@
 import re
 import requests
 from bs4 import BeautifulSoup as bs
+import aiohttp
 
 
 # Функция, получающая айди и имя артистов, пробегая по страницам жанра
-def get_id_name_genres_of_artist(url):
+
+async def get_id_name_genres_of_artist(url):
     data = {}
     try:
-        request = requests.get(url)
-        soup = bs(request.text, "html.parser")
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                text = await response.text()
+                soup = bs(text, "html.parser")
 
         artist_content = soup.find_all('div', class_='artist__content')
         # Общий жанр (Главный жанр)
@@ -28,7 +32,7 @@ def get_id_name_genres_of_artist(url):
                     list_of_genres.append(genre.text)
             data[artist_id] = {'Name': artist_name, 'Genres': list_of_genres}
 
-    except requests.exceptions.RequestException as e:
+    except aiohttp.ClientConnectorError as e:
         print(f'Request failed: {e}')
     except bs.exceptions.BeautifulSoup as e:
         print(f'Failed to parse HTML: {e}')
@@ -36,6 +40,7 @@ def get_id_name_genres_of_artist(url):
         print(f'Unexpected error: {e}')
     finally:
         return data
+
 
 
 # Функция, возвращающая жанр страницы
@@ -54,18 +59,22 @@ def get_page_genre(url):
         return main_genre
 
 
-def get_all_data_for_all_pages_and_genres(list_of_genres):
+# TODO: Добавить асинхронность вместо цикла
+async def get_all_data_for_all_pages_and_genres(list_of_genres):
     data = {}
     for genre in list_of_genres:
         for i in range(101):
             if i == 0:
                 url = f'https://music.yandex.ru/genre/{genre}/artists'
-                for key, value in get_id_name_genres_of_artist(url).items():
+                artist_data = await get_id_name_genres_of_artist(url)
+                for key, value in artist_data.items():
                     data[key] = value
             else:
                 url = f'https://music.yandex.ru/genre/{genre}/artists?page={i}'
-                for key, value in get_id_name_genres_of_artist(url).items():
+                artist_data = await get_id_name_genres_of_artist(url)
+                for key, value in artist_data.items():
                     data[key] = value
         print('Информация по страницам жанра собрана \n')
     print('Функция отработала, айди собраны')
     return data
+

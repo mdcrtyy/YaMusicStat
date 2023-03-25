@@ -13,7 +13,7 @@ from src.helpers.get_actual_regions_names_list import get_regions_names
 #  base 10: 'Отключитьрекламу'
 
 
-async def get_artists_data(url, regions_names, semaphore=asyncio.Semaphore(25)):
+async def get_artists_data(url, regions_names, semaphore=asyncio.Semaphore(20)):
     """
     Функция, заполняющая детальную информацию об артисте - количество слушателей, лайков и статистику по регионам.
     :param regions_names: Список актуальных регионов, получаемых из модуля get_actual_regions_names_list
@@ -91,7 +91,6 @@ async def get_data_by_ids(ids):
     tasks = []
     regions_names = get_regions_names()
     for idd in ids:
-        tasks.append(asyncio.create_task(get_artists_data(f'https://music.yandex.ru/artist/{idd}/info', regions_names,
-                                                          semaphore=asyncio.Semaphore(25))))
+        tasks.append(asyncio.create_task(get_artists_data(f'https://music.yandex.ru/artist/{idd}/info', regions_names)))
     results = await asyncio.gather(*tasks)
     return results

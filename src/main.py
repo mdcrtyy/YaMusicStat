@@ -18,7 +18,7 @@ async def main():
     genre_list = ['поп', 'рэп%20и%20хип-хоп', 'танцевальная%20музыка', 'электроника']
     genre_list_2 = ['альтернатива', 'инди', 'рок-музыка', 'метал']
 
-    data = get_all_data_for_all_pages_and_genres(genre_list_2)
+    data = await get_all_data_for_all_pages_and_genres(genre_list_2)
     ids = list(set(data.keys()))
 
     results = await get_data_by_ids(ids)
