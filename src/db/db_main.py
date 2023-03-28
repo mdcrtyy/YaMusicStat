@@ -1,4 +1,4 @@
-from bd_insert import *
+from db_insert import *
 import os
 import glob
 

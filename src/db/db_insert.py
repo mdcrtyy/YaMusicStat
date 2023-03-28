@@ -1,31 +1,6 @@
 import psycopg2
 import json
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-user = os.getenv('USER')
-host = os.getenv('HOST')
-port = os.getenv('PORT')
-database = os.getenv('DATABASE')
-
-
-def connect():
-    """
-    Подключение к базе данных
-    :return:
-    """
-    try:
-        conn = psycopg2.connect(
-            user=user,
-            host=host,
-            port=port,
-            database=database
-        )
-        return conn
-    except psycopg2.Error as e:
-        print("Unable to connect to database: ", e)
+from db_connection import connect
 
 
 def insert_regions_data():
@@ -80,7 +55,8 @@ def insert_genres_data():
         cur = conn.cursor()
 
         sql_genres = """INSERT INTO genres(id, genre_name)
-                     VALUES (%s, %s)"""
+                     VALUES (%s, %s)
+                     ON CONFLICT (id) DO NOTHING"""
 
         cur.executemany(sql_genres, genres)
         conn.commit()
@@ -264,5 +240,3 @@ def all_insert(path):
     insert_artist_data_listeners(path)
     insert_artists_genres(path)
     insert_regions_artists(path)
-
-

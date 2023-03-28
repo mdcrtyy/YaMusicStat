@@ -8,7 +8,8 @@ env.bak/
 venv.bak/
 
 /.idea/*
-
+/logs/*
+/test/*
 .DS_Store
 Thumbs.db
 
