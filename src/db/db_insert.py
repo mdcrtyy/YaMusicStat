@@ -18,12 +18,12 @@ def insert_regions_data():
         for region_id, region_data in info_about_regions.items():
             region_name = region_data.get('name', '')
             population = region_data.get('population', '')
-            regions.append((region_id, region_name, population))
+            regions.append((region_name, population))
 
         cur = conn.cursor()
 
-        sql_regions = """INSERT INTO regions(id, region_name, population)
-                     VALUES (%s, %s, %s)"""
+        sql_regions = """INSERT INTO regions(region_name, population)
+                     VALUES (%s, %s)"""
 
         cur.executemany(sql_regions, regions)
         conn.commit()
@@ -44,31 +44,26 @@ def insert_genres_data():
     conn = connect()
 
     try:
-        with open('../../data/input/all_genres.json', 'r') as f:
-            info_about_genres = json.load(f)
-
-        genres = []
-        for genre_id, genre_data in info_about_genres.items():
-            genre_name = genre_data
-            genres.append((genre_id, genre_name))
+        with open('../../data/input/genres.json', 'r') as f:
+            genres = json.load(f)
 
         cur = conn.cursor()
 
-        sql_genres = """INSERT INTO genres(id, genre_name)
-                     VALUES (%s, %s)
-                     ON CONFLICT (id) DO NOTHING"""
+        sql_genres = """INSERT INTO genres(genre_name)
+                     VALUES (%s)
+                     ON CONFLICT (genre_name) DO NOTHING"""
 
-        cur.executemany(sql_genres, genres)
+        for genre in genres:
+            cur.execute(sql_genres, (genre,))
         conn.commit()
     except (psycopg2.Error, FileNotFoundError) as e:
         print("Error inserting genres data: ", e)
     finally:
-        cur.close()
         conn.close()
+        cur.close()
         print("PostgreSQL connection is closed")
 
 
-# Функция, заполняющая таблицу artists Айдишником и именем
 def insert_artist_id_name(path):
     """
     Вставка данных об артисте в таблицу artist
@@ -166,14 +161,16 @@ def insert_artists_genres(path) -> None:
                 artist_genre = None
                 for key, value in genres_data.items():
                     if genre == value:
-                        artist_genre = key
+                        artist_genre = value
                 artists_genres_list.append((artist_id, artist_genre))
 
-        sql_artists_data = """INSERT INTO artist_genres(fk_artist_id, fk_genre_id)
-                         VALUES (%s, %s)
-                         ON CONFLICT (fk_artist_id, fk_genre_id) DO NOTHING
+        sql_artists_genres = """INSERT INTO artist_genres (fk_artist_id, fk_genre_id)
+                            SELECT %s, id FROM genres WHERE genre_name = %s
+                            ON CONFLICT (fk_artist_id, fk_genre_id) DO NOTHING
                          """
-        cur.executemany(sql_artists_data, artists_genres_list)
+
+        cur.executemany(sql_artists_genres, [(artist_id, genre_name) for artist_id, genre_name in artists_genres_list])
+
         conn.commit()
     except (Exception, psycopg2.Error) as error:
         print(f"Error inserting data to table artists_data: {error}")
@@ -197,7 +194,12 @@ def insert_regions_artists(path) -> None:
             info_about_artist = json.load(f)
 
         with open('../../data/input/info_about_regions.json', 'r') as f:
-            regions_data = json.load(f)
+            info_about_regions = json.load(f)
+
+        regions_names_list = []
+        for region_id, region_data in info_about_regions.items():
+            region_name = region_data.get('name', '')
+            regions_names_list.append(region_name)
 
         artists_regions_list = []
         for artist_id, artist_data in info_about_artist.items():
@@ -206,21 +208,24 @@ def insert_regions_artists(path) -> None:
 
             if type(artist_regions) != str:
                 for region_name, region_listeners in artist_regions.items():
-                    for region_id, region_data in regions_data.items():
-                        if region_name == region_data.get('name', ''):
-                            artist_region = region_id
-                            artist_region_listeners = region_listeners
-                        else:
-                            continue
-                    artists_regions_list.append((artist_region, artist_id, artist_region_listeners, date))
+                    if region_name in regions_names_list:
+                        artists_regions_list.append((region_name, artist_id, region_listeners, date))
+                    else:
+                        continue
+
             else:
                 continue
 
-        sql_artists_data = """INSERT INTO regions_artists(fk_region_id, fk_artist_id, region_listeners, date)
-                         VALUES (%s, %s, %s, %s)
-                         ON CONFLICT (fk_region_id, fk_artist_id, date) DO NOTHING
-                         """
-        cur.executemany(sql_artists_data, artists_regions_list)
+        sql_artists_data = """
+                    INSERT INTO regions_artists(fk_region_id, fk_artist_id, region_listeners, date)
+                    VALUES ((SELECT id FROM regions WHERE region_name = %s), %s, %s, %s)
+                    ON CONFLICT (fk_region_id, fk_artist_id, date) DO NOTHING
+                """
+
+        cur.executemany(sql_artists_data, [(artist_region, artist_id, artist_region_listeners, date) for
+                                           artist_region, artist_id, artist_region_listeners, date in
+                                           artists_regions_list])
+
         conn.commit()
     except (Exception, psycopg2.Error) as error:
         print(f"Error inserting data to table artists_regions: {error}")
@@ -236,7 +241,5 @@ def all_insert(path):
     :param path:
     :return:
     """
-    insert_artist_id_name(path)
-    insert_artist_data_listeners(path)
-    insert_artists_genres(path)
+
     insert_regions_artists(path)
